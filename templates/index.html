@@ -9,64 +9,188 @@
     <title>Premier League 2015/16</title>
 </head>
 <body class="application">
-	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="./">Premier League Analysis</a>
-			</div>
-		</div>
-	</div>
 
-    <!-- menu select -->
-      <div class="col-sm-6">
-        <div class="chart-wrapper">
-          <div class="chart-title">
-            Choose Team
-          </div>
-          <div class="chart-stage">
-            <div id="menu-select"></div>
-          </div>
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+        <a class="navbar-brand" href="./">Premier League Analysis</a>
         </div>
-      </div>
-      <!-- menu select -->
+    </div>
+</div>
 
-	<div id="outer" class="container-fluid">
-		<div class="row">
-			<div class="col-sm-8">
-				<div class="row">
-				<!-- Goals Bar Chart -->
-					<div class="col-sm-12">
-						<div class="chart-wrapper">
-							<div class="chart-title">
-							Goals Scored
-							</div>
-							<div class="chart-stage">
-								<div id="time-chart"></div>
-							</div>
-						</div>
-					</div>
 
+<div class="container-fluid">
+    <!-- Team Select Menu -->
+    <div class="col-md-6 col-md-offset-2">
+        <div class="chart-wrapper">
+            <div class="chart-title">
+            Choose Team
+            </div>
+            <div class="chart-stage">
+                <div id="menu-select"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Average Attendance -->
+    <div class="col-md-2">
+        <div class="chart-wrapper">
+            <div class="chart-title">
+            Ave Attendance
+            </div>
+            <div class="chart-stage" style="background: #33CC99;
+            position: relative;
+            font-size: 14px;
+            color: white;
+            vertical-align: middle;
+            text-align: center;
+            /*padding-top: 12px;*/
+            /*padding-bottom: 0px;*/
+            ">
+            <div id="avg-attendance"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-7 col-md-offset-1">
+			<!-- Goals Bar Chart -->
+			<div class="chart-wrapper">
+				<div class="chart-title">
+				Goals Scored/Conceded
 				</div>
-                <!-- goals Pie -->
-              <div class="col-sm-6">
-                <div class="chart-wrapper">
-                  <div class="chart-title">
-                    Home/Away
-                  </div>
-                  <div class="chart-stage">
-                    <div id="home-away-goals-chart"></div>
-                  </div>
-                </div>
-              </div>
-              <!-- funding Pie -->
+				<div class="chart-stage goals-chart-container">
+					<div id="goals-chart"></div>
+				</div>
 			</div>
-		</div>
+        </div>
+        <div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 ">
+            <!-- Home/Away Select Pie -->
+            <div class="chart-wrapper">
+                <div class="chart-title">
+                Home/Away
+                </div>
+                <div class="chart-stage pie-chart-container">
+                    <div id="home-away-goals-chart"></div>
+                </div>
+            </div>
+        </div>
+            <!-- Home/Away Select Pie -->            
 	</div>
+</div>
 
+<div class="container-fluid">
+    <div class="row">
+        <!-- Shots for Bar Chart -->
+        <div class="col-md-4 col-md-offset-1 col-sm-12">
+            <div class="chart-wrapper">
+                <div class="chart-title">
+                Shots For
+                </div>
+                <div class="chart-stage shots-chart-container">
+                    <div id="shots-for-chart"></div>
+                </div>
+            </div>
+        </div>
 
+        <!-- "inner-container" for total goals and conversion rate nu displays -->
+        <div class="col-md-1 inner-container">
+            <!-- Total Goals scored Num Display -->
+            <div class="col-md-12 col-sm-6" style="padding: 0px">
+                <div class="chart-wrapper">
+                    <div class="chart-title">
+                        Total Goals Scored
+                    </div>
+                    <div class="chart-stage" style="background: #33CC99;
+                    position: relative;
+                    font-size: 14px;
+                    color: white;
+                    vertical-align: middle;
+                    text-align: center;
+                    padding-right: 5px;
+/*                    padding-top: 10px;
+                    padding-bottom: 0px;*/
+                    ">
+                        <div id="total-goals-for"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Shot conversion for Num Diplay -->
+            <div class="col-md-12 col-sm-6" style="padding: 0px">
+                <div class="chart-wrapper">
+                    <div class="chart-title">
+                    Shots Conversion Rate - For
+                    </div>
+                    <div class="chart-stage" style="background: #33CC99;
+                    position: relative;
+                    font-size: 14px;
+                    color: white;
+                    vertical-align: middle;
+                    text-align: center;
+                    /*padding-top: 10px;
+                    padding-bottom: 0px;*/
+                    ">
+                        <div id="shots-to-goals-scored"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Shots against bar chart -->
+        <div class="col-md-4 col-sm-12">
+            <div class="chart-wrapper">
+                <div class="chart-title">
+                Shots Against
+                </div>
+                <div class="chart-stage">
+                    <div id="shots-against-chart"></div>
+                </div>
+            </div>
+        </div>
 
-
-
+        <!-- "inner-container" for total goals and conversion rate nu displays -->
+        <div class="col-md-1 inner-container">
+            <!-- Total Goals scored Num Display -->
+            <div class="col-md-12 col-sm-6" style="padding: 0px">
+                <div class="chart-wrapper">
+                    <div class="chart-title">
+                        Total Goals Against
+                    </div>
+                    <div class="chart-stage" style="background: #33CC99;
+                    position: relative;
+                    font-size: 14px;
+                    color: white;
+                    vertical-align: middle;
+                    text-align: center;
+/*                    padding-top: 10px;
+                    padding-bottom: 0px;*/
+                    ">
+                        <div id="total-goals-against"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Shot conversion for Num Diplay -->
+            <div class="col-md-12 col-sm-6" style="padding: 0px">
+                <div class="chart-wrapper">
+                    <div class="chart-title">
+                    Shots Conversion Rate - Against
+                    </div>
+                    <div class="chart-stage" style="background: #33CC99;
+                    position: relative;
+                    font-size: 14px;
+                    color: white;
+                    vertical-align: middle;
+                    text-align: center;
+                    /*padding-top: 10px;
+                    padding-bottom: 0px;*/
+                    ">
+                        <div id="shots-to-goals-conceded"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 	<script src="{{ url_for ('static', filename='lib/js/jquery.min.js')}}"></script>
 	<script src="{{ url_for ('static', filename='lib/js/bootstrap.min.js')}}"></script>
