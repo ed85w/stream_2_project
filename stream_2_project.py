@@ -8,7 +8,7 @@ app = Flask(__name__)
 MONGODB_HOST = 'localhost'
 MONGODB_PORT = 27017
 DBS_NAME = 'streamTwo'
-COLLECTION_NAME = 'newData'
+COLLECTION_NAME = 'PLDataWithGoalDetails'
 
 
 @app.route("/")
@@ -19,7 +19,7 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/projectTest/testData")
+@app.route("/dataDashboard/PLData")
 def project_data():
     """
     A Flask view to serve the project data from
@@ -29,14 +29,24 @@ def project_data():
     # A constant that defines the record fields that we wish to retrieve.
     FIELDS = {
         '_id': False,
-        'Matchweek': True,
+        'matchweek': True,
         'team': True,
-        'goals': True,
-        'fixture_date': True,
-        'home_team': True,
-        'away_team': True,
-        'home_goals': True,
-        'away_goals': True,
+        'home': True,
+        'attendance': True,
+        'goals_for': True,
+        'goals_against': True,
+        'shots_on_target_for': True,
+        'shots_on_target_against': True,
+        'shots_off_target_for': True,
+        'shots_off_target_against': True,
+        'total_shots_for': True,
+        'total_shots_against': True,
+        'yellow_cards_for': True,
+        'yellow_cards_against': True,
+        'red_cards_for': True,
+        'red_cards_against': True,
+        'goal_details_for': True,
+        'goal_details_against': True,
     }
 
     # Open a connection to MongoDB using a with statement such that the
@@ -45,7 +55,6 @@ def project_data():
         # Define which collection we wish to access
         collection = conn[DBS_NAME][COLLECTION_NAME]
         # Retrieve a result set only with the fields defined in FIELDS
-
         results = collection.find(projection=FIELDS)
         # Convert projects to a list in a JSON object and return the JSON data
         return json.dumps(list(results))

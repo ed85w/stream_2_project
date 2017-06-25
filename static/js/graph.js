@@ -278,7 +278,7 @@ function makeGraphs(error, jsonData) {
     goalsScoredTab
         .dimension(matchweekDim)
         // .group(matchweekGroup)
-            .group(function(d) { return d['_id_']; })
+            .group(function(d) { return d['matchweek']; })
         .columns([
             function (d) { return d['matchweek']; },
             function (d) { return d['team']; },
@@ -288,8 +288,8 @@ function makeGraphs(error, jsonData) {
         //     'matchweek',
         //     'goals_for_details'
         // ])
-        .width(500);
-        // .height(500);
+        .width(500)
+        .height(1000);
 
 
     dc.renderAll();
