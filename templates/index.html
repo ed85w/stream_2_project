@@ -15,7 +15,8 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="./">Premier League Analysis</a>
-            <button class="intro_button" type="button" onclick="javascript:startGuide();">How to Use This Page</button>
+            <a class="navbar-brand" onclick="javascript:startGuide();">How to Use This Page</a>
+{#            <button class="intro_button" type="button" onclick="javascript:startGuide();">How to Use This Page</button>#}
         </div>
     </div>
 </div>
@@ -194,18 +195,22 @@
         </div>
     </div>
 </div>
-{#goals scored table #}
+
 <div class="container-fluid">
+{#    goal details table#}
     <div class="row">
-        <table id="goals-scored-table">
-            <thead>
-                <tr>
-                  <th>Matchweek</th>
-                  <th>Team</th>
-                  <th>Goals Scored</th>
-                </tr>
-            </thead>
-   </table>
+        <div class="col-md-12">
+            <table class="table-bordered table-striped" id="goals-scored-table">
+                <thead>
+                    <tr>
+                        <th>Matchweek</th>
+                        <th>Opponent</th>
+                        <th>Goals Scored</th>
+                        <th>Goals Conceded</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
     </div>
 </div>
 
