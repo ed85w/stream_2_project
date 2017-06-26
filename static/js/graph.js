@@ -18,94 +18,100 @@ queue()
  
 function makeGraphs(error, jsonData) {
 
+    //Clean projectsJson data - NOT REQUIRED UNLESS HELPS SORT
+   jsonData.forEach(function (d) {
+        d['matchweek'] = +d['matchweek'];
+       // d["total_donations"] = +d["total_donations"];
+   });
+
    //Create a Crossfilter instance
    var ndx = crossfilter(jsonData);
 
    //Define Dimensions
     var matchweekDim = ndx.dimension(function (d) {
-        return d["matchweek"];
+        return d['matchweek'];
     });
     var teamDim = ndx.dimension(function (d){
         return d['team'];
     });
     var homeAwayDim = ndx.dimension(function(d){
-        if ( d['home'] === "TRUE"){
-            return "Home";
+        if ( d['home'] === 'TRUE'){
+            return 'Home';
         } else {
-            return "Away";
+            return 'Away';
         }
     });
     var totalShotsForDim = ndx.dimension(function(d){
-        return d["total_shots_for"];
+        return d['total_shots_for'];
     });
     var totalShotsAgainstDim = ndx.dimension(function(d){
-        return d["total_shots_against"];
+        return d['total_shots_against'];
     });
 
    //calculate metrics
     var totalGoalsForByDate = matchweekDim.group().reduceSum(function(d){
-        return d["goals_for"];
+        return d['goals_for'];
     });
     var totalGoalsAgainstByDate = matchweekDim.group().reduceSum(function(d){
-        return d["goals_against"];
+        return d['goals_against'];
     });
     var meanAttendance = ndx.groupAll().reduce(
       function (p, v) {
           ++p.n;
-          p.tot += v["attendance"];
+          p.tot += v['attendance'];
           return p;
       },
       function (p, v) {
           --p.n;
-          p.tot -= v["attendance"];
+          p.tot -= v['attendance'];
           return p;
       },
       function () { return {n:0,tot:0}; }
     );
     var shotsToGoalsScored = ndx.groupAll().reduce(
         function (p, v){
-            p.goalsScored += v["goals_for"];
-            p.shotsFor += v["total_shots_for"];
+            p.goalsScored += v['goals_for'];
+            p.shotsFor += v['total_shots_for'];
             return p;
         },
         function (p, v){
-            p.goalsScored -= v["goals_for"];
-            p.shotsFor -= v["total_shots_for"];
+            p.goalsScored -= v['goals_for'];
+            p.shotsFor -= v['total_shots_for'];
             return p;
         },
         function () {return {goalsScored:0, shotsFor:0};}
     );
     var totalGoalsFor = ndx.groupAll().reduce(
         function (p, v){
-            p.goalsFor += v["goals_for"];
+            p.goalsFor += v['goals_for'];
             return p;
         },
         function (p, v){
-            p.goalsFor -= v["goals_for"];
+            p.goalsFor -= v['goals_for'];
             return p;
         },
         function() {return {goalsFor:0};}
     );
     var totalGoalsAgainst = ndx.groupAll().reduce(
         function (p, v){
-            p.goalsAgainst += v["goals_against"];
+            p.goalsAgainst += v['goals_against'];
             return p;
         },
         function (p, v){
-            p.goalsAgainst -= v["goals_against"];
+            p.goalsAgainst -= v['goals_against'];
             return p;
         },
         function() {return {goalsAgainst:0};}
     );
     var shotsToGoalsConceded = ndx.groupAll().reduce(
         function (p, v){
-            p.goalsConceded += v["goals_against"];
-            p.shotsAgainst += v["total_shots_against"];
+            p.goalsConceded += v['goals_against'];
+            p.shotsAgainst += v['total_shots_against'];
             return p;
         },
         function (p, v){
-            p.goalsConceded -= v["goals_against"];
-            p.shotsAgainst -= v["total_shots_against"];
+            p.goalsConceded -= v['goals_against'];
+            p.shotsAgainst -= v['total_shots_against'];
             return p;
         },
         function () {return {goalsConceded:0, shotsAgainst:0};}
@@ -123,14 +129,14 @@ function makeGraphs(error, jsonData) {
     var matchweekGroup = matchweekDim.group();
 
     //min and max values to be used in charts
-    var minWeek = matchweekDim.bottom(1)[0]["matchweek"];
-    var maxWeek = matchweekDim.top(1)[0]["matchweek"];
+    var minWeek = matchweekDim.bottom(1)[0]['matchweek'];
+    var maxWeek = matchweekDim.top(1)[0]['matchweek'];
 
-    var minShotsFor = totalShotsForDim.bottom(1)[0]["total_shots_for"];
-    var maxShotsFor = totalShotsForDim.top(1)[0]["total_shots_for"];
+    var minShotsFor = totalShotsForDim.bottom(1)[0]['total_shots_for'];
+    var maxShotsFor = totalShotsForDim.top(1)[0]['total_shots_for'];
 
-    var minShotsAgainst = totalShotsAgainstDim.bottom(1)[0]["total_shots_against"];
-    var maxShotsAgainst = totalShotsAgainstDim.top(1)[0]["total_shots_against"];
+    var minShotsAgainst = totalShotsAgainstDim.bottom(1)[0]['total_shots_against'];
+    var maxShotsAgainst = totalShotsAgainstDim.top(1)[0]['total_shots_against'];
 
     // set initial widths based on screen size
     var goalsChartWidth = $(".goals-chart-container").width();
@@ -160,10 +166,7 @@ function makeGraphs(error, jsonData) {
     });
 
     $("#menu-select").change(function() {
-        // var teamColour1 = selectField.value[0];
-        // $("body").css("background-color","blue")
         a = d3.select("#menue-select").text(selectField.filters());
-
         // b = $("#menu-select").val();
         alert(a +' is the team selected');
     });
@@ -277,17 +280,14 @@ function makeGraphs(error, jsonData) {
 
     goalsScoredTab
         .dimension(matchweekDim)
-        // .group(matchweekGroup)
-            .group(function(d) { return d['matchweek']; })
+        .group(function(d) { return d['matchweek']; })
         .columns([
             function (d) { return d['matchweek']; },
-            function (d) { return d['team']; },
-            function (d) { return d['goal_details_for']; }
+            function (d) { return d['opponent']; },
+            function (d) { return d['goal_details_for']; },
+            function (d) { return d['goal_details_against']; },
         ])
-        // .columns([
-        //     'matchweek',
-        //     'goals_for_details'
-        // ])
+        .order(d3.ascending)
         .width(500)
         .height(1000);
 

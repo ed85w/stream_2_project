@@ -5,3 +5,15 @@
 /*body.application {*/
 
 /*}*/
+
+.dc-table-label {
+  visibility: collapse;
+    height: 0;
+    display: none;
+}
+
+.dc-table-group {
+  visibility: collapse;
+    height: 0;
+    display: none;
+}

@@ -8,7 +8,7 @@ app = Flask(__name__)
 MONGODB_HOST = 'localhost'
 MONGODB_PORT = 27017
 DBS_NAME = 'streamTwo'
-COLLECTION_NAME = 'PLDataWithGoalDetails'
+COLLECTION_NAME = 'PLDataWithOpponent'
 
 
 @app.route("/")
@@ -31,6 +31,7 @@ def project_data():
         '_id': False,
         'matchweek': True,
         'team': True,
+        'opponent': True,
         'home': True,
         'attendance': True,
         'goals_for': True,
