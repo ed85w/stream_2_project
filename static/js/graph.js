@@ -7,7 +7,7 @@
 //         'Manchester': ['#34231343', '#34213414'],
 // };
 
- // TEAM_COLORS[d['team_name']]
+ // TEAM_COLORS[d['team']]
 
 
 
@@ -130,7 +130,7 @@ function makeGraphs(error, jsonData) {
 
     //min and max values to be used in charts
     var minWeek = matchweekDim.bottom(1)[0]['matchweek'];
-    var maxWeek = matchweekDim.top(1)[0]['matchweek'];
+    var maxWeek = matchweekDim.top(1)[0]['matchweek']+1;
 
     var minShotsFor = totalShotsForDim.bottom(1)[0]['total_shots_for'];
     var maxShotsFor = totalShotsForDim.top(1)[0]['total_shots_for'];
@@ -153,7 +153,6 @@ function makeGraphs(error, jsonData) {
     var shotsToGoalsConcededND = dc.numberDisplay("#shots-to-goals-conceded");
     var totalGoalsForND = dc.numberDisplay("#total-goals-for");
     var totalGoalsAgainstND = dc.numberDisplay("#total-goals-against");
-
     var goalsScoredTab = dc.dataTable("#goals-scored-table");
 
     selectField = dc.selectMenu('#menu-select')
@@ -165,10 +164,17 @@ function makeGraphs(error, jsonData) {
         return d.key;
     });
 
+    // event handler to filter selectField on doc load
+    $( document ).ready(function() {
+        selectField.filter('Arsenal');
+        console.log(teamDim.top(1)[0].team);
+        $("option.dc-select-option").remove();
+    });
+    
     $("#menu-select").change(function() {
-        a = d3.select("#menue-select").text(selectField.filters());
-        // b = $("#menu-select").val();
-        alert(a +' is the team selected');
+        // selectedTeam = teamDim.top(1)[0].team
+        selectedTeam = selectField.filter()
+        alert(selectedTeam + " has been selected")
     });
 
     goalsChart
@@ -287,9 +293,11 @@ function makeGraphs(error, jsonData) {
             function (d) { return d['goal_details_for']; },
             function (d) { return d['goal_details_against']; },
         ])
-        .order(d3.ascending)
+        .order(function(a, b) { return d3.ascending(a["matchweek"], b["matchweek"]);} )
+        .size(370)
         .width(500)
-        .height(1000);
+        .height();
+
 
 
     dc.renderAll();
