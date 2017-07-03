@@ -2,12 +2,32 @@
  * Created by Ed on 13/05/2017.
  */
 
-// const TEAM_COLORS = {
-//         'Arsenal': ['#e60005','#fffeff'],
-//         'Manchester': ['#34231343', '#34213414'],
-// };
+const TEAM_COLORS = {
+    'Arsenal': ['#fffeff','#e60005'],
+    'Aston Villa': ['#660032','#e7cd00'],
+    'Bournemouth': [],
+    'Chelsea': [],
+    'Crystal Palace': [],
+    'Everton': [],
+    'Leicester': [],
+    'Liverpool': [],
+    'Manchester City': [],
+    'Manchester Utd': [],
+    'Newcastle Utd': [],
+    'Norwich City': [],
+    'Southampton': [],
+    'Stoke City': [],
+    'Sunderland': [],
+    'Swansea City': [],
+    'Tottenham': [],
+    'Watford': [],
+    'West Brom': [],
+    'West Ham': []
+};
 
- // TEAM_COLORS[d['team']]
+
+
+
 
 
 
@@ -18,10 +38,9 @@ queue()
  
 function makeGraphs(error, jsonData) {
 
-    //Clean projectsJson data - NOT REQUIRED UNLESS HELPS SORT
+    // Clean projectsJson data - NOT REQUIRED UNLESS HELPS SORT
    jsonData.forEach(function (d) {
         d['matchweek'] = +d['matchweek'];
-       // d["total_donations"] = +d["total_donations"];
    });
 
    //Create a Crossfilter instance
@@ -129,7 +148,7 @@ function makeGraphs(error, jsonData) {
     var matchweekGroup = matchweekDim.group();
 
     //min and max values to be used in charts
-    var minWeek = matchweekDim.bottom(1)[0]['matchweek'];
+    var minWeek = matchweekDim.bottom(1)[0]['matchweek']-1;
     var maxWeek = matchweekDim.top(1)[0]['matchweek']+1;
 
     var minShotsFor = totalShotsForDim.bottom(1)[0]['total_shots_for'];
@@ -156,25 +175,26 @@ function makeGraphs(error, jsonData) {
     var goalsScoredTab = dc.dataTable("#goals-scored-table");
 
     selectField = dc.selectMenu('#menu-select')
-       .dimension(teamDim)
-       .group(teamGroup);
+        .dimension(teamDim)
+        .group(teamGroup)
+        .filter("Arsenal")
+        .promptText("")
+        .on('renderlet', function(){
+            $("select.dc-select-menu option:empty").remove();
+        });
 
     //remove key from selectField dropdown
     selectField.title(function(d){
         return d.key;
     });
 
-    // event handler to filter selectField on doc load
-    $( document ).ready(function() {
-        selectField.filter('Arsenal');
-        console.log(teamDim.top(1)[0].team);
-        $("option.dc-select-option").remove();
-    });
-    
+
+    // change colours based on team selection
     $("#menu-select").change(function() {
-        // selectedTeam = teamDim.top(1)[0].team
-        selectedTeam = selectField.filter()
-        alert(selectedTeam + " has been selected")
+        var selectedTeam = selectField.filter();
+        var teamHomeColour = TEAM_COLORS[selectedTeam][0];
+        var teamAwayColour = TEAM_COLORS[selectedTeam][1];
+        console.log(teamHomeColour, teamAwayColour)
     });
 
     goalsChart
@@ -184,12 +204,13 @@ function makeGraphs(error, jsonData) {
         .dimension(matchweekDim)
         .group(totalGoalsForByDate, "Scored")
         .stack(totalGoalsAgainstByDate, "Conceded")
-        .ordinalColors(["#0dff0d","#b2131a"])
+        .ordinalColors(["#efff2b","#b2131a"])
         .transitionDuration(500)
-        .x(d3.time.scale().domain([minWeek, maxWeek]))
-        .legend(dc.legend().x(450).y(10).itemHeight(13).gap(5))
+        .x(d3.scale.linear().domain([minWeek, maxWeek]))
+        .legend(dc.legend().x(400).y(0).itemHeight(13).gap(5))
         .elasticY(true)
         .xAxisLabel("Matchweek")
+        .centerBar(true)
         .yAxis().ticks(2);
 
     pieChart
@@ -210,8 +231,8 @@ function makeGraphs(error, jsonData) {
         .group(totalShotsForGroup)
         .ordinalColors(["#0dff0d"])
         .transitionDuration(500)
-        // .color("#0dff0d")
-        .x(d3.time.scale().domain([minShotsFor, maxShotsFor]))
+        .x(d3.scale.linear().domain([minShotsFor, maxShotsFor]))
+        // .centerBar(true)
         .elasticY(true)
         .xAxisLabel("Number of Shots")
         .yAxisLabel("Number of Games")
@@ -226,7 +247,8 @@ function makeGraphs(error, jsonData) {
         .ordinalColors(["#b2131a"])
         .transitionDuration(500)
         // .color("#0dff0d")
-        .x(d3.time.scale().domain([minShotsAgainst, maxShotsAgainst]))
+        .x(d3.scale.linear().domain([minShotsAgainst, maxShotsAgainst]))
+        .centerBar(true)
         .elasticY(true)
         .xAxisLabel("Number of Shots")
         .yAxisLabel("Number of Games")
@@ -286,14 +308,16 @@ function makeGraphs(error, jsonData) {
 
     goalsScoredTab
         .dimension(matchweekDim)
-        .group(function(d) { return d['matchweek']; })
+        .group(function(d) { return null })
         .columns([
             function (d) { return d['matchweek']; },
             function (d) { return d['opponent']; },
             function (d) { return d['goal_details_for']; },
             function (d) { return d['goal_details_against']; },
         ])
-        .order(function(a, b) { return d3.ascending(a["matchweek"], b["matchweek"]);} )
+        .sortBy(function(d) {  return +d['matchweek']; })
+
+        // .order(d3.descending)
         .size(370)
         .width(500)
         .height();
@@ -307,7 +331,7 @@ function makeGraphs(error, jsonData) {
 
     // function to resize chart based on bootstrap container
     function chartResize(){
-        var goalsChartWidth = $(".goals-chart-container").width();
+        var goalsChartWidth = $(".goals-chart-container").width() -20 ;
         var pieChartWidth = $(".pie-chart-container").width();
         var shotsChartsWidth = $(".shots-chart-container").width();
         goalsChart
@@ -319,6 +343,7 @@ function makeGraphs(error, jsonData) {
         totalShotsAgainstChart
             .width(shotsChartsWidth);
         dc.renderAll();
+        // location.reload();
     }
 
 
