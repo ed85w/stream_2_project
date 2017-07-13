@@ -103,7 +103,7 @@
             <!-- Total Goals scored Num Display -->
             <div class="col-md-12 col-sm-6" style="padding: 0px">
                 <div class="chart-wrapper">
-                    <div class="chart-title">
+                    <div class="chart-title" style="padding: 7px">
                         Total Goals Scored
                     </div>
                     <div class="chart-stage" style="background: #33CC99;
@@ -123,8 +123,8 @@
             <!-- Shot conversion for Num Diplay -->
             <div class="col-md-12 col-sm-6" style="padding: 0px">
                 <div class="chart-wrapper">
-                    <div class="chart-title">
-                    Shots Conversion Rate - For
+                    <div class="chart-title" style="padding: 7px">
+                    Shot Conversion Rate - For
                     </div>
                     <div class="chart-stage" style="background: #33CC99;
                     position: relative;
@@ -152,12 +152,12 @@
             </div>
         </div>
 
-        <!-- "inner-container" for total goals and conversion rate nu displays -->
+        <!-- "inner-container" for total goals and conversion rate num displays -->
         <div class="col-md-1 inner-container">
             <!-- Total Goals scored Num Display -->
             <div class="col-md-12 col-sm-6" style="padding: 0px">
                 <div class="chart-wrapper">
-                    <div class="chart-title">
+                    <div class="chart-title" style="padding: 7px">
                         Total Goals Against
                     </div>
                     <div class="chart-stage" style="background: #33CC99;
@@ -176,8 +176,8 @@
             <!-- Shot conversion for Num Diplay -->
             <div class="col-md-12 col-sm-6" style="padding: 0px">
                 <div class="chart-wrapper">
-                    <div class="chart-title">
-                    Shots Conversion Rate - Against
+                    <div class="chart-title" style="padding: 7px">
+                    Shot Conv. Rate - Against
                     </div>
                     <div class="chart-stage" style="background: #33CC99;
                     position: relative;
@@ -196,29 +196,52 @@
     </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid hidden-xs">
 {#    goal details table#}
     <div class="row">
-        <div class="col-md-12">
-            <table class="table-bordered table-striped" id="goals-scored-table">
-                <thead>
-                    <tr>
-                        <th>Matchweek</th>
-                        <th>Opponent</th>
-                        <th>Goals Scored</th>
-                        <th>Goals Conceded</th>
-                    </tr>
-                </thead>
-            </table>
+        <div class="">
+            <div class="chart-wrapper col-md-12" >
+                <div class="chart-title" id="tourStep5">
+                Goal Details
+                </div>
+                <table class="table-striped " id="goals-scored-table">
+                    <thead >
+                        <tr>
+                            <th class="col-md-2">Matchweek</th>
+                            <th class="col-md-2">Opponent</th>
+                            <th class="col-md-4">Goals Scored</th>
+                            <th class="col-md-4">Goals Conceded</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
     </div>
 </div>
 
-<div class="container-fluid">
-    <div class="row">
-        acknowledgements
-    </div>
-</div>
+{#<div class="container-fluid">#}
+{#    <div class="row">#}
+{#        <h3>Acknowledgements</h3>#}
+{#        <div class="well">#}
+{#            <div class="col-sm-3 col-lg-offset-2">#}
+{#                <a href="https://github.com/jargnar">#}
+{#                    <img src="{{ url_for ('static', filename='img/github-black.png')}}" alt="git icon" width="40" height="40" class="git-icons">#}
+{#                </a>#}
+{#            </div>#}
+{#            <div class="col-sm-4">#}
+{#                <p class="acknowledgements">Jagnar - for the raw premier league data</p>#}
+{#            </div>#}
+{#            <div class="col-sm-3 col-lg-offset-2">#}
+{#                <a href="https://whispering-anchorage-60816.herokuapp.com/">#}
+{#                    <img src="{{ url_for ('static', filename='img/github-black.png')}}" alt="git icon" width="40" height="40" class="git-icons">#}
+{#                </a>#}
+{#            </div>#}
+{#            <div class="col-sm4">#}
+{#                <p class="acknowledgements">Jamcoy - for the raw premier league data</p>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
 
 	<script src="{{ url_for ('static', filename='lib/js/jquery.min.js')}}"></script>
 	<script src="{{ url_for ('static', filename='lib/js/bootstrap.min.js')}}"></script>
