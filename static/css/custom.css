@@ -1,19 +1,143 @@
-/*.inner-container {*/
-	/*padding:0px;*/
-/*}*/
+/*TESTING*/
+.div-test {
+    border: 2px solid red;
+    height: 100px;
+}
+.div-test-too {
+    border: 2px solid red;
+}
 
-/*body.application {*/
+body.application {
+    padding: 0;
+    background-color: rgba(124, 121, 130, 0.85);
+    font-family: Calibri;
+    color: whitesmoke;
+}
 
-/*}*/
+#team-badge {
+    height: 100px;
+    width: 100px;
+}
 
+/*header styling*/
+.header {
+    background-color: #7490a5;
+    height: 110px;
+    border-bottom: 10px solid black;
+    /*text-align: center;*/
+}
+
+.info-div {
+    height: 100px;
+}
+
+#info-img {
+    padding-right: 0;
+}
+
+#info-txt {
+    padding-left: 0;
+}
+
+h1 {
+    text-align: center;
+    /*position: absolute;*/
+    /*top:50%;*/
+    width: 100%;
+}
+
+.info-div img {
+    padding-top: 12px;
+    width: 75px;
+    height: 87px;
+    display: inline;
+    float: right;
+    vertical-align: middle;
+    /*cursor: pointer;*/
+    cursor: hand;
+}
+
+ul {
+    list-style: none;
+    padding-top: 17px;
+    padding-left: 0;
+}
+/*end of header styling*/
+
+
+
+/*remove blank rows from table*/
 .dc-table-label {
-  visibility: collapse;
+    visibility: collapse;
     height: 0;
     display: none;
 }
 
 .dc-table-group {
-  visibility: collapse;
+    visibility: collapse;
     height: 0;
     display: none;
+}
+
+/*table formatting & spacing*/
+.dc-table-column {
+    padding-left: 15px;
+}
+
+.git-icons {
+    background-color: inherit;
+    margin-left: 20%;
+}
+
+.acknowledgements {
+    display: inline;
+    padding-left: 10px;
+}
+
+thead {
+    padding: 5px;
+}
+
+div.chart-title {
+    margin-bottom: 5px;
+}
+
+/*end of table formatting*/
+.well {
+    padding: 5px;
+    /*text-align: center;*/
+}
+
+/*footer*/
+footer {
+    background-image: url("/static/img/grass.png");
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-bottom: 0;
+    width: 100%;
+    height: 100px;
+    background-size: 100% 100%;
+    z-index: 99;
+}
+
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+}
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
 }

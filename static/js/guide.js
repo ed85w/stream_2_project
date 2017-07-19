@@ -26,22 +26,10 @@ function startGuide() {
                 element: "#tourStep4",
                 intro: "<b>Shots For</b><br/>This chart displays an aggregation of the number of games in which the selected team has taken varying number of shots <br/></br>Like the Goals Scored/Conceded Chart, this chart can be filtered by dragging your mouse/finger over the chart area"
             },
-            // {
-            //     element: "#tourStep5",
-            //     intro: "<b>Projects by Resource Type</b><br/>This row chart shows the donation distribution by resource type.  Click any row to filter the data.  Click the same row again to remove the filter, or click 'reset' in the top right corner to remove all 'resource type' filters."
-            // },
-            // {
-            //     element: "#tourStep6",
-            //     intro: "<b>Projects by Primary Focus Area</b><br/>This row chart shows the donation distribution by primary focus area."
-            // },
-            // {
-            //     element: "#tourStep7",
-            //     intro: "<b>Projects by Poverty Level</b><br/>This donut chart shows the donation distribution by poverty level.  Click any slice to filter the data.  Click the same slice again to remove the filter, or click 'reset' in the top right corner to remove all 'poverty level' filters."
-            // },
-            // {
-            //     element: "#tourStep8",
-            //     intro: "<b>Projects by Grade Level</b><br/>This pie chart shows the donation distribution by student grade level."
-            // }
+            {
+                element: "#tourStep5",
+                intro: "<b>Goal Details Table</b><br/>This table shows the games/goals which you have filtered in more detail"
+            }
         ]
     };
 

@@ -3,9 +3,9 @@
  */
 
 const TEAM_COLORS = {
-    'Arsenal': ['#fffeff','#e60005'],
-    'Aston Villa': ['#660032','#e7cd00'],
-    'Bournemouth': [],
+    'Arsenal': ['#f1ff3a','#e60005','arsenal.png'],
+    'Aston Villa': ['#660032','#e7cd00','aston_villa.png'],
+    'Bournemouth': ['#2d268f','#e72022','bournemouth.png'],
     'Chelsea': [],
     'Crystal Palace': [],
     'Everton': [],
@@ -24,13 +24,6 @@ const TEAM_COLORS = {
     'West Brom': [],
     'West Ham': []
 };
-
-
-
-
-
-
-
 
 queue()
     .defer(d3.json, "/dataDashboard/PLData")
@@ -194,7 +187,12 @@ function makeGraphs(error, jsonData) {
         var selectedTeam = selectField.filter();
         var teamHomeColour = TEAM_COLORS[selectedTeam][0];
         var teamAwayColour = TEAM_COLORS[selectedTeam][1];
-        console.log(teamHomeColour, teamAwayColour)
+        var teamBadge = TEAM_COLORS[selectedTeam][2];
+        // console.log(teamHomeColour, teamAwayColour)
+        $('#team-badge').attr('src','static/img/' + teamBadge).attr('height','100px').attr('width','100px');
+        goalsChart
+            .ordinalColors([teamHomeColour,teamAwayColour]);
+        dc.renderAll();
     });
 
     goalsChart
