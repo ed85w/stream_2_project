@@ -264,7 +264,7 @@ function makeGraphs(error, jsonData) {
         .ordinalColors(["#b2131a","#efff2b"])
         .transitionDuration(500)
         .x(d3.scale.linear().domain([minWeek, maxWeek]))
-        .legend(dc.legend().x(400).y(0).itemHeight(13).gap(5))
+        .legend(dc.legend().x(200).y(0).itemHeight(13).gap(5))
         .elasticY(true)
         .xAxisLabel("Matchweek")
         .centerBar(true)
