@@ -446,24 +446,10 @@ function makeGraphs(error, jsonData) {
     });
 
 // listen for browser resize
-//     $(window).on("resize", chartResize);
+    $(window).on("resize", chartResize);
 
 // function to resize chart based on bootstrap container
-//     function chartResize() {
-//         var goalsChartWidth = $(".goals-chart-container").width();
-//         var pieChartWidth = $(".pie-chart-container").width();
-//         var shotsChartsWidth = $(".shots-chart-container").width();
-//         goalsChart
-//             .width(goalsChartWidth);
-//         pieChart
-//             .width(pieChartWidth);
-//         totalShotsForChart
-//             .width(shotsChartsWidth);
-//         totalShotsAgainstChart
-//             .width(shotsChartsWidth);
-//         dc.renderAll();
-//     }
-    $(document).ready(function() {
+    function chartResize() {
         if ($(window).width() != width && $(window).height() != height) {
             var goalsChartWidth = $(".goals-chart-container").width();
             var pieChartWidth = $(".pie-chart-container").width();
@@ -478,7 +464,8 @@ function makeGraphs(error, jsonData) {
                 .width(shotsChartsWidth);
             dc.renderAll();
         }
-    });
+    }
+
 }
 
 
