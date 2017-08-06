@@ -4,21 +4,13 @@ from pymongo import MongoClient
 import json
 import os
 
+
 app = Flask(__name__)
 
-# MONGODB_HOST = 'localhost'
-# MONGODB_PORT = 27017
-# DBS_NAME = 'streamTwo'
-# COLLECTION_NAME = 'PLDataWithOpponent'
-
-MONGODB_HOST = 'ds141351.mlab.com:41351'
-MONGODB_PORT = 33321
-DBS_NAME = 'heroku_cs1b94gh'
-COLLECTION_NAME = 'PLDataUnNormalisedWithOpponent'
 
 MONGO_URI = os.getenv('MONGODB_URI', 'mongodb://localhost:27017')
 DBS_NAME = os.getenv('MONGO_DB_NAME', 'streamTwo')
-
+COLLECTION_NAME = 'PLDataUnNormalisedWithOpponent'
 
 @app.route("/")
 def index():
@@ -61,12 +53,12 @@ def project_data():
 
     # Open a connection to MongoDB using a with statement such that the
     # connection will be closed as soon as we exit the with statement
-    with MongoClient(MONGODB_HOST, MONGODB_PORT) as conn:
+    with MongoClient(MONGO_URI) as conn:
         # Define which collection we wish to access
         collection = conn[DBS_NAME][COLLECTION_NAME]
         # Retrieve a result set only with the fields defined in FIELDS
         results = collection.find(projection=FIELDS)
-        # Convert projects to a list in a JSON object and return the JSON data
+        # Convert results to a list in a JSON object and return the JSON data
         return json.dumps(list(results))
 
 
