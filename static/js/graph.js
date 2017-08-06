@@ -449,10 +449,7 @@ function makeGraphs(error, jsonData) {
     $(window).on("resize", chartResize);
 
 // function to resize chart based on bootstrap container
-    var width = $(window).width(), height = $(window).height();
-
     function chartResize() {
-    alert("Resize");
         var goalsChartWidth = $(".goals-chart-container").width();
         var pieChartWidth = $(".pie-chart-container").width();
         var shotsChartsWidth = $(".shots-chart-container").width();
