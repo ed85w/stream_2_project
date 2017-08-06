@@ -452,20 +452,19 @@ function makeGraphs(error, jsonData) {
     var width = $(window).width(), height = $(window).height();
 
     function chartResize() {
-        if ($(window).width() != width && $(window).height() != height) {
-            var goalsChartWidth = $(".goals-chart-container").width();
-            var pieChartWidth = $(".pie-chart-container").width();
-            var shotsChartsWidth = $(".shots-chart-container").width();
-            goalsChart
-                .width(goalsChartWidth);
-            pieChart
-                .width(pieChartWidth);
-            totalShotsForChart
-                .width(shotsChartsWidth);
-            totalShotsAgainstChart
-                .width(shotsChartsWidth);
-            dc.renderAll();
-        }
+    alert("Resize");
+        var goalsChartWidth = $(".goals-chart-container").width();
+        var pieChartWidth = $(".pie-chart-container").width();
+        var shotsChartsWidth = $(".shots-chart-container").width();
+        goalsChart
+            .width(goalsChartWidth);
+        pieChart
+            .width(pieChartWidth);
+        totalShotsForChart
+            .width(shotsChartsWidth);
+        totalShotsAgainstChart
+            .width(shotsChartsWidth);
+        dc.renderAll();
     }
 
 }
