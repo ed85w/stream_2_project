@@ -2,13 +2,22 @@ from flask import Flask
 from flask import render_template
 from pymongo import MongoClient
 import json
+import os
 
 app = Flask(__name__)
 
-MONGODB_HOST = 'localhost'
-MONGODB_PORT = 27017
-DBS_NAME = 'streamTwo'
-COLLECTION_NAME = 'PLDataWithOpponent'
+# MONGODB_HOST = 'localhost'
+# MONGODB_PORT = 27017
+# DBS_NAME = 'streamTwo'
+# COLLECTION_NAME = 'PLDataWithOpponent'
+
+MONGODB_HOST = 'ds141351.mlab.com:41351'
+MONGODB_PORT = 33321
+DBS_NAME = 'heroku_cs1b94gh'
+COLLECTION_NAME = 'PLDataUnNormaliedWithOpponent'
+
+MONGO_URI = os.getenv('MONGODB_URI', 'mongodb://localhost:27017')
+DBS_NAME = os.getenv('MONGO_DB_NAME', 'donorsUSA')
 
 
 @app.route("/")
