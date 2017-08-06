@@ -1,97 +1,127 @@
-/*TESTING*/
-.div-test {
-    border: 2px solid red;
-    height: 100px;
-}
-.div-test-too {
-    border: 2px solid red;
-}
+/*application stying*/
 
 body.application {
     padding: 0;
-    background-color: rgba(124, 121, 130, 0.85);
-    font-family: Calibri;
-    color: whitesmoke;
+    background-color: #5a5f63;
+    font-family: Lato, Arial;
+    color: black;
+
+}
+
+div.introjs-tooltiptext {
+    font-family: Lato, Arial;
+    color: black;
+}
+
+.row{
+    margin: 0;
+}
+.container-fluid{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+/*main content*/
+
+#menu-select {
+    padding: 5px 5px 5px 0;
+}
+
+#attendance-div{
+    color: black;
+    padding:0 3px 0 3px;
+    text-align: right;
+}
+
+#avg-attendance{
+    color: black;
+    padding-left: 5px;
+    padding-right: 0;
+    text-align: left;
+}
+
+#tourStep1 {
+    height: 302px;
+}
+
+div.chart-title {
+    padding-right: 5px;
+}
+.dc-select-menu{
+    width: 100%;
+}
+
+.badge-div{
+    text-align: center;
 }
 
 #team-badge {
-    height: 100px;
-    width: 100px;
+    width: 170px;
+    height: 220px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#stats-div {
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 215px;
+}
+
+#stats-name1, #stats-name2,  #stats-name3,
+#stats-name3a ,#stats-name4, #stats-name4a,
+#stats-name5, #stats-name6, #stats-name7,
+#stats-name8 {
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 3px;
+    color: black;
+    font-size: 14px;
+}
+
+span.number-display {
+    color: black;
+}
+
+.goal-details-row {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.goal-details-div {
+    padding-bottom: 15px;
 }
 
 /*header styling*/
+
 .header {
     background-color: #7490a5;
-    height: 110px;
+    /*height: 110px;*/
     border-bottom: 10px solid black;
-    /*text-align: center;*/
+    margin-bottom: 20px;
+    text-align: center;
+    margin-left: 0;
+    margin-right: 0;
 }
 
-.info-div {
-    height: 100px;
-}
-
-#info-img {
-    padding-right: 0;
-}
-
-#info-txt {
-    padding-left: 0;
+#info-btn {
+    margin-bottom: 5px;
 }
 
 h1 {
     text-align: center;
-    /*position: absolute;*/
-    /*top:50%;*/
     width: 100%;
-}
-
-.info-div img {
-    padding-top: 12px;
-    width: 75px;
-    height: 87px;
-    display: inline;
-    float: right;
-    vertical-align: middle;
-    /*cursor: pointer;*/
-    cursor: hand;
-}
-
-ul {
-    list-style: none;
-    padding-top: 17px;
-    padding-left: 0;
-}
-/*end of header styling*/
-
-
-
-/*remove blank rows from table*/
-.dc-table-label {
-    visibility: collapse;
-    height: 0;
-    display: none;
-}
-
-.dc-table-group {
-    visibility: collapse;
-    height: 0;
-    display: none;
+    font-size: 2em;
+    font-weight: bold;
+    color: whitesmoke;
 }
 
 /*table formatting & spacing*/
+
 .dc-table-column {
     padding-left: 15px;
-}
-
-.git-icons {
-    background-color: inherit;
-    margin-left: 20%;
-}
-
-.acknowledgements {
-    display: inline;
-    padding-left: 10px;
 }
 
 thead {
@@ -99,13 +129,54 @@ thead {
 }
 
 div.chart-title {
+    height: 30px;
     margin-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
-/*end of table formatting*/
-.well {
-    padding: 5px;
-    /*text-align: center;*/
+/*remove blank rows from table*/
+.dc-table-label {
+    visibility: collapse;
+    height: 0;
+    display: none;
+
+}
+
+.dc-table-group {
+    visibility: collapse;
+    height: 0;
+    display: none;
+    color: black;
+}
+
+/*acknowledgements*/
+
+.git-icons {
+    height: 40px;
+    width: 40px;
+    float: left;
+}
+
+.acknowledgements-div {
+    margin-bottom: 80px;
+}
+
+.acknowledgements {
+    height:50px;
+    cursor: pointer;
+    cursor: hand;
+}
+
+a div p {
+    /*margin-top: 12px;*/
+    position:relative;
+    color: black;
+    top:0%;
+}
+
+a div p:hover {
+    text-decoration: underline;
 }
 
 /*footer*/
@@ -122,22 +193,14 @@ footer {
     z-index: 99;
 }
 
-/* Large desktops and laptops */
-@media (min-width: 1200px) {
-}
-
-/* Landscape tablets and medium desktops */
-@media (min-width: 992px) and (max-width: 1199px) {
-}
 
 /* Portrait tablets and small desktops */
 @media (min-width: 768px) and (max-width: 991px) {
+
+/* stats-div to match height of shots charts*/
+
+    #stats-div {
+        height: 105px;
+    }
 }
 
-/* Landscape phones and portrait tablets */
-@media (max-width: 767px) {
-}
-
-/* Portrait phones and smaller */
-@media (max-width: 480px) {
-}

@@ -7,74 +7,67 @@
 	<link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/dc.css')}}">
     <link rel="stylesheet" href="{{url_for ('static', filename='lib/css/introjs.css')}}">
     <link rel="stylesheet" href="{{ url_for ('static', filename='css/custom.css')}}">
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="/static/img/football-soccer-ball-152-183228.png">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
     <title>Premier League 2015/16</title>
 </head>
 <body class="application">
 
-    <header class="container-fluid header">
-{#        <div class="row">#}
-            <div class="col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4">
-                    <h1>PREMIER LEAGUE ANALYSIS</h1>
-            </div>
-            <div class="col-sm-1 col-sm-offset-2 col-md-1 col-md-offset-2 info-div" id="info-img">
-                <img src="/static/img/info-sign.png" alt="" width="85" height="85" onclick="javascript:startGuide();"/>
-            </div>
-            <div class="col-sm-1 col-md-1 info-div" id="info-txt">
-                <ul>
-                    <li>how to use</li>
-                    <li>this page</li>
-                    <li>page</li>
-                </ul>
-            </div>
-{#        </div>#}
-    </header>
+    <!-- Header -->
+    <div class="container-fluid header">
+        <header>
+            <h1>PREMIER LEAGUE 2015/16 ANALYSIS</h1>
+            <button type="button" class="btn btn-default" id="info-btn" aria-label="Left Align" onclick="javascript:startGuide();">
+                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> HOW TO USE THIS PAGE
+            </button>
+        </header>
+    </div>
 
-    <div class="container">
+    <!-- Main content container -->
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-xs-5 col-md-2 div-test">
-                <img src="static/img/arsenal.png"  id="team-badge">
-            </div>
-{#            Team Select Menu#}
-            <div class="col-xs-7 col-md-5 div-test">
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
+                <!-- team select option box -->
                 <div class="chart-wrapper" id="tourStep1">
-                    <div class="chart-title">
-                    Choose Team
+                    <div class="row">
+                        <div class="chart-title col-xs-6 col-sm-6 col-md-6">
+                            SELECT TEAM
+                        </div>
+                        <div class="chart-title col-xs-6 col-sm-6 col-md-6" id="menu-select"></div>
                     </div>
-                    <div class="chart-stage">
-                        <div id="menu-select"></div>
+                    <div class="row">
+                        <div class="badge-div">
+                            <img src="static/img/arsenal.png"  class="img-responsive" id="team-badge">
+                        </div>
                     </div>
-                </div>
-            </div>
-{#            Average attendance display#}
-            <div class="col-xs-12 col-md-5 div-test">
-                <div class="chart-wrapper">
-                    <div class="chart-title">
-                    Ave Attendance
-                    </div>
-                        <div class="chart-stage" style="background: #33CC99;
-                        position: relative;
-                        height: 30px;
-                        font-size: 14px;
-                        color: white;
-                        vertical-align: middle;
-                        text-align: center;
-                        ">
-                        <div id="avg-attendance"></div>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6 col-lg-8" id="attendance-div">
+                            AVG. ATTENDANCE
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4" id="avg-attendance"></div>
                     </div>
                 </div>
             </div>
-        </div>
-{#    </div>#}
 
-
-
-{#    <div class="container">#}
-        <div class="row">
-            <div class="col-md-12">
-            <!-- Goals Bar Chart -->
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
+                <!-- home/away pie -->
                 <div class="chart-wrapper" id="tourStep2">
+                    <div class="chart-title">
+                    HOME/AWAY
+                    </div>
+                    <div class="chart-stage pie-chart-container">
+                        <div id="home-away-goals-chart"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-12 col-lg-6">
+                <!-- goals bar chart -->
+                <div class="chart-wrapper" id="tourStep3">
                     <div class="chart-title" >
-                    Goals Scored/Conceded
+                    GOALS SCORED/CONCEDED
                     </div>
                     <div class="chart-stage goals-chart-container">
                         <div id="goals-chart"></div>
@@ -82,59 +75,92 @@
                 </div>
             </div>
         </div>
-{#    </div>#}
-
-{#    <div class="container">#}
-        <div class="row">
-
-            <div class="col-sm-12 col-md-6">
-                <div class="col-md-12">
-                    <!-- Shots for Bar Chart -->
-                    <div class="chart-wrapper" id="tourStep4">
-                        <div class="chart-title">
-                        Shots For
-                        </div>
-                        <div class="chart-stage shots-chart-container">
-                            <div id="shots-for-chart"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-12">
-                    <!-- Shots against bar chart -->
-                    <div class="chart-wrapper">
-                        <div class="chart-title">
-                        Shots Against
-                        </div>
-                        <div class="chart-stage">
-                            <div id="shots-against-chart"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-12 col-md-6">
-            <!-- Home/Away Select Pie -->
-                <div class="chart-wrapper" id="tourStep3">
+        <div class="row ">
+            <div class="col-md-4 col-lg-2 col-lg-offset-2">
+            <!-- statistics -->
+                <div class="chart-wrapper" id="tourStep4">
                     <div class="chart-title">
-                    Home/Away
+                    STATISTICS
                     </div>
-                    <div class="chart-stage pie-chart-container">
-                        <div id="home-away-goals-chart"></div>
+                    <div class="chart-stage" id="stats-div">
+
+                        <div class="col-xs-9 col-sm-9 col-sm-4 col-md-9 col-lg-9" id="stats-name1">
+                            SHOTS FOR
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-sm-2 col-md-3 col-lg-3 stats-detail" id="total-shots-for"></div>
+
+                         <div class="col-xs-9 col-sm-9 col-sm-4 col-md-9 col-lg-9 pull-left" id="stats-name2">
+                            GOALS SCORED
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-sm-2 col-md-3 col-lg-3 stats-detail" id="total-goals-for"></div>
+
+                        <div class="col-xs-9 col-sm-9 col-sm-4 col-md-9 col-lg-9" id="stats-name3">
+                            SHOTS TO GOALS RATIO
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-sm-2 col-md-3 col-lg-3 stats-detail" id="shots-to-goals-scored"></div>
+
+                        <div class="col-xs-9 col-sm-9 col-sm-4 col-md-9 col-lg-9 stats-name" id="stats-name4">
+                            SHOTS AGAINST
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-sm-2 col-md-3 col-lg-3 stats-detail" id="total-shots-against"></div>
+
+                        <div class="col-xs-9 col-sm-9 col-sm-4 col-md-9 col-lg-9 stats-name" id="stats-name5">
+                            GOALS CONCEDED
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-sm-2 col-md-3 col-lg-3 stats-detail" id="total-goals-against"></div>
+
+                        <div class="col-xs-9 col-sm-9 col-sm-4 col-md-9 col-lg-9 stats-name" id="stats-name6">
+                            SHOTS TO CONCEDED RATIO
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-sm-2 col-md-3 col-lg-3 stats-detail" id="shots-to-goals-conceded"></div>
+
+                        <div class="col-xs-9 col-sm-9 col-sm-4 col-md-9 col-lg-9 stats-name" id="stats-name7">
+                            YELLOW CARDS
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-sm-2 col-md-3 col-lg-3 stats-detail" id="yellow-cards"></div>
+
+                        <div class="col-xs-9 col-sm-9 col-sm-4 col-md-9 col-lg-9 stats-name" id="stats-name8">
+                            RED CARDS
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-sm-2 col-md-3 col-lg-3 stats-detail" id="red-cards"></div>
+
+
                     </div>
                 </div>
             </div>
-            <!-- Home/Away Select Pie -->
+
+            <div class="col-md-4 col-lg-3">
+                <!-- Shots for Bar Chart -->
+                <div class="chart-wrapper" id="tourStep5">
+                    <div class="chart-title">
+                    SHOTS FOR
+                    </div>
+                    <div class="chart-stage shots-chart-container">
+                        <div id="shots-for-chart"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-3">
+                <!-- Shots against Bar Chart -->
+                <div class="chart-wrapper" id="tourStep6">
+                    <div class="chart-title">
+                    SHOTS AGAINST
+                    </div>
+                    <div class="chart-stage">
+                        <div id="shots-against-chart"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-{#    </div>#}
 
     <!-- Goal details table -->
-    <div class="container hidden-xs">
-{#        <div class="row">#}
-            <div class="chart-wrapper col-md-12" >
-                <div class="chart-title" id="tourStep5">
-                Goal Details
+    <div class="container-fluid hidden-xs">
+        <div class="row goal-details-row">
+            <div class="chart-wrapper col-md-12 col-lg-8 col-lg-offset-2 goal-details-div" >
+                <div class="chart-title" id="tourStep7">
+                GOAL DETAILS
                 </div>
                 <table class="table-striped " id="goals-scored-table">
                     <thead >
@@ -148,17 +174,31 @@
                 </table>
             </div>
         </div>
-{#    </div>#}
+    </div>
 
+    <!-- acknowledgements -->
+    <div class="container-fluid acknowledgements-div">
+        <a href="https://github.com/jargnar">
+            <div class="col-xs-12 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-1 col-lg-3 col-lg-offset-3 acknowledgements">
+                <img src="static/img/github-black.png" class="git-icons">
+                <p>Thanks to Jargnar for the raw premier league 2016/16 season data</p>
+            </div>
+        </a>
+        <a href="https://github.com/jamcoy/school_donations">
+            <div class="col-xs-12 col-sm-5 col-md-4 col-md-offset-1 col-lg-3 col-lg-offset-0 acknowledgements" >
+                <img src="static/img/github-black.png" class="git-icons">
+                <p>Thanks to Jamcoy for the excellent example of guide.js code</p>
+            </div>
+        </a>
+    </div>
 
-
+    <!-- fixed footer -->
     <div class="col-md-12">
         <footer>
 
         </footer>
     </div>
 
-{#<div>Icons made by <a href="http://www.flaticon.com/authors/daniel-bruce" title="Daniel Bruce">Daniel Bruce</a> from <a href="http://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>#}
 
 
 	<script src="{{ url_for ('static', filename='lib/js/jquery.min.js')}}"></script>
