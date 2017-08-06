@@ -449,6 +449,8 @@ function makeGraphs(error, jsonData) {
     $(window).on("resize", chartResize);
 
 // function to resize chart based on bootstrap container
+    var width = $(window).width(), height = $(window).height();
+
     function chartResize() {
         if ($(window).width() != width && $(window).height() != height) {
             var goalsChartWidth = $(".goals-chart-container").width();
