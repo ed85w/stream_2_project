@@ -14,10 +14,10 @@ app = Flask(__name__)
 MONGODB_HOST = 'ds141351.mlab.com:41351'
 MONGODB_PORT = 33321
 DBS_NAME = 'heroku_cs1b94gh'
-COLLECTION_NAME = 'PLDataUnNormaliedWithOpponent'
+COLLECTION_NAME = 'PLDataUnNormalisedWithOpponent'
 
 MONGO_URI = os.getenv('MONGODB_URI', 'mongodb://localhost:27017')
-DBS_NAME = os.getenv('MONGO_DB_NAME', 'donorsUSA')
+DBS_NAME = os.getenv('MONGO_DB_NAME', 'streamTwo')
 
 
 @app.route("/")
