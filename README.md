@@ -4,26 +4,22 @@
 
 ## Project Brief
 
-The brief for this project was to build a data-driven front end and backend website using a variety of technologies including Python, Javascript, Crossfilter.js, D3 & Bootstrap
+The brief for this project was to build a data-driven frontend and backend website using a variety of technologies including Flask, Crossfilter.js, DC.js, D3 & Bootstrap.
 
 ## Overview
 
-The data is stored in json format
-
-### Challenges Faced
-
-
+The project is a football statistics webpage that looks at the English Premier League 2015/16 season. Users can select different teams to view a range of statistics for the season, for that team. Users can also filter the data by interacting with the charts.
 
 ## Features
 
 ## Tech Used
 
 ### Some the tech used includes:
-- [AngularJS](https://angularjs.org/)
-    - **AngularJS** page routing and directives
+- [Flask](http://flask.pocoo.org/)
+    - **Flask** the application was created in the Flask framework
+- [D3](https://d3js.org/) & [DC.js](https://dc-js.github.io/dc.js/)
+    - **D3 & DC.js** were used to create the charts, table and number displays
+- [Crossfilter](http://square.github.io/crossfilter/)
+    - **crossfilter** was used to help create the filters and manipuation of the data
 - [Bootstrap](http://getbootstrap.com/)
     - **Bootstrap** was used to provide a responsive layout
-- [npm](https://www.npmjs.com/)
-    - **npm** was used to help manage some of the dependencies in the application
-- [bower](https://bower.io/)
-    - **Bower** is used to manage the installation of libraries and frameworks
