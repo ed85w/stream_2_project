@@ -58,6 +58,9 @@ function makeGraphs(error, jsonData) {
     var totalShotsAgainstDim = ndx.dimension(function (d) {
         return d['total_shots_against'];
     });
+    var totalGoalsForDim = ndx.dimension(function (d){
+        return d['goals_for'];
+    })
 
 //calculate metrics
     var totalGoalsForByDate = matchweekDim.group().reduceSum(function (d) {
@@ -201,7 +204,7 @@ function makeGraphs(error, jsonData) {
     var totalShotsAgainstGroup = totalShotsAgainstDim.group();
     var homeAwayGroup = homeAwayDim.group();
     var matchweekGroup = matchweekDim.group();
-    var totalGoalsForGroup = totalGoalsForByDate.group();
+    var totalGoalsForGroup = totalGoalsForDim.group();
 
 //min and max values to be used in charts
     var minWeek = matchweekDim.bottom(1)[0]['matchweek'] - 1;
