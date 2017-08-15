@@ -31,20 +31,24 @@ const TEAM_COLORS = {
 
 queue()
     .defer(d3.json, "/dataDashboard/PLData")
-   .await(makeGraphs);
+    .await(makeGraphs);
  
 function makeGraphs(error, jsonData) {
 
 //Create a Crossfilter instance
+
     var ndx = crossfilter(jsonData);
 
 //Define Dimensions
+
     var matchweekDim = ndx.dimension(function (d) {
         return d['matchweek'];
     });
+
     var teamDim = ndx.dimension(function (d) {
         return d['team'];
     });
+
     var homeAwayDim = ndx.dimension(function (d) {
         if (d['home'] === 'TRUE') {
             return 'Home';
@@ -52,23 +56,25 @@ function makeGraphs(error, jsonData) {
             return 'Away';
         }
     });
+
     var totalShotsForDim = ndx.dimension(function (d) {
         return d['total_shots_for'];
     });
+
     var totalShotsAgainstDim = ndx.dimension(function (d) {
         return d['total_shots_against'];
     });
-    // var totalGoalsForDim = ndx.dimension(function (d){
-    //     return d['goals_for'];
-    // })
 
 //calculate metrics
+
     var totalGoalsForByDate = matchweekDim.group().reduceSum(function (d) {
         return d['goals_for'];
     });
+
     var totalGoalsAgainstByDate = matchweekDim.group().reduceSum(function (d) {
         return d['goals_against'];
     });
+
     var meanAttendance = ndx.groupAll().reduce(
         function (p, v) {
             ++p.n;
@@ -337,6 +343,7 @@ function makeGraphs(error, jsonData) {
             return d;
         })
         .group(totalRedCards)
+        .formatNumber(d3.format("d"))
         .transitionDuration(0);
 
     goalsScoredTab
@@ -361,8 +368,6 @@ function makeGraphs(error, jsonData) {
         .sortBy(function (d) {
             return +d['matchweek'];
         })
-
-        // .order(d3.descending)
         .size(370)
         .width(500)
         .height();
@@ -388,10 +393,10 @@ function makeGraphs(error, jsonData) {
         dc.renderAll();
     });
 
-// listen for browser resize
+// listen for browser resize & run chart resize function
     $(window).on("resize", chartResize);
 
-// function to resize chart based on bootstrap container
+// function to resize chart based on bootstrap container/page width
     function chartResize() {
         var goalsChartWidth = $(".goals-chart-container").width();
         var pieChartWidth = $(".pie-chart-container").width();

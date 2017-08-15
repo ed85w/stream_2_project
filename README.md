@@ -23,3 +23,9 @@ The project is a football statistics webpage that looks at the English Premier L
     - **crossfilter** was used to help create the filters and manipuation of the data
 - [Bootstrap](http://getbootstrap.com/)
     - **Bootstrap** was used to provide a responsive layout
+
+## Challenges and Testing
+
+- Mobile devices
+- Un-normalisation of data
+- Removal of 'Select All'
