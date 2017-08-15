@@ -339,7 +339,7 @@ function makeGraphs(error, jsonData) {
         .transitionDuration(0);
 
     totalGoalsForND
-        .formatNumber(d3.format("d"))
+        // .formatNumber(d3.format("d"))
         .valueAccessor(function (d) {
             return d['goals_for'];
         })
