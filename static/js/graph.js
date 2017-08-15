@@ -58,9 +58,9 @@ function makeGraphs(error, jsonData) {
     var totalShotsAgainstDim = ndx.dimension(function (d) {
         return d['total_shots_against'];
     });
-    var totalGoalsForDim = ndx.dimension(function (d){
-        return d['goals_for'];
-    })
+    // var totalGoalsForDim = ndx.dimension(function (d){
+    //     return d['goals_for'];
+    // })
 
 //calculate metrics
     var totalGoalsForByDate = matchweekDim.group().reduceSum(function (d) {
@@ -84,6 +84,7 @@ function makeGraphs(error, jsonData) {
             return {n: 0, tot: 0};
         }
     );
+
     var shotsToGoalsScored = ndx.groupAll().reduce(
         function (p, v) {
             p.goalsScored += v['goals_for'];
@@ -99,24 +100,15 @@ function makeGraphs(error, jsonData) {
             return {goalsScored: 0, shotsFor: 0};
         }
     );
+
     var totalGoalsFor = ndx.groupAll().reduceSum(function (d){
         return d['goals_for'];
     });
 
+    var totalGoalsAgainst = ndx.groupAll().reduceSum(function (d){
+        return d['goals_against'];
+    });
 
-    var totalGoalsAgainst = ndx.groupAll().reduce(
-        function (p, v) {
-            p.goalsAgainst += v['goals_against'];
-            return p;
-        },
-        function (p, v) {
-            p.goalsAgainst -= v['goals_against'];
-            return p;
-        },
-        function () {
-            return {goalsAgainst: 0};
-        }
-    );
     var shotsToGoalsConceded = ndx.groupAll().reduce(
         function (p, v) {
             p.goalsConceded += v['goals_against'];
@@ -133,61 +125,22 @@ function makeGraphs(error, jsonData) {
         }
     );
 
-    var totalShotsFor = ndx.groupAll().reduce(
-        function (p, v) {
-            p.totalShotsFor += v['total_shots_for'];
-            return p;
-        },
-        function (p, v) {
-            p.totalShotsFor -= v['total_shots_for'];
-            return p;
-        },
-        function () {
-            return {totalShotsFor: 0};
-        }
-    );
+    var totalShotsFor = ndx.groupAll().reduceSum(function (d){
+        return d['total_shots_for'];
+    });
 
-    var totalShotsAgainst = ndx.groupAll().reduce(
-        function (p, v) {
-            p.totalShotsAgainst += v['total_shots_against'];
-            return p;
-        },
-        function (p, v) {
-            p.totalShotsAgainst -= v['total_shots_against'];
-            return p;
-        },
-        function () {
-            return {totalShotsAgainst: 0};
-        }
-    );
+    var totalShotsAgainst = ndx.groupAll().reduceSum(function (d){
+        return d['total_shots_against'];
+    });
 
-    var totalYellowCards = ndx.groupAll().reduce(
-        function (p, v) {
-            p.totalYellowCards += v['yellow_cards_for'];
-            return p;
-        },
-        function (p, v) {
-            p.totalYellowCards -= v['yellow_cards_for'];
-            return p;
-        },
-        function () {
-            return {totalYellowCards: 0};
-        }
-    );
+    var totalYellowCards = ndx.groupAll().reduceSum(function (d){
+        return d['yellow_cards_for'];
+    });
 
-    var totalRedCards = ndx.groupAll().reduce(
-        function (p, v) {
-            p.totalRedCards += v['red_cards_for'];
-            return p;
-        },
-        function (p, v) {
-            p.totalRedCards -= v['red_cards_for'];
-            return p;
-        },
-        function () {
-            return {totalRedCards: 0};
-        }
-    );
+    var totalRedCards = ndx.groupAll().reduceSum(function (d){
+        return d['red_cards_for'];
+    });
+
 
 // groups
     var teamGroup = teamDim.group();
@@ -321,15 +274,13 @@ function makeGraphs(error, jsonData) {
         .transitionDuration(0);
 
     totalShotsForND
-        .formatNumber(d3.format("d"))
         .valueAccessor(function (d) {
-            return d.totalShotsFor;
+            return d;
         })
         .group(totalShotsFor)
         .transitionDuration(0);
 
     totalGoalsForND
-        // .formatNumber(d3.format("d"))
         .valueAccessor(function (d) {
             return d;
         })
@@ -349,17 +300,15 @@ function makeGraphs(error, jsonData) {
         .transitionDuration(0);
 
     totalShotsAgainstND
-        .formatNumber(d3.format("d"))
         .valueAccessor(function (d) {
-            return d.totalShotsAgainst;
+            return d;
         })
         .group(totalShotsAgainst)
         .transitionDuration(0);
 
     totalGoalsAgainstND
-        .formatNumber(d3.format("d"))
         .valueAccessor(function (d) {
-            return d.goalsAgainst;
+            return d;
         })
         .group(totalGoalsAgainst)
         .transitionDuration(0);
@@ -377,17 +326,15 @@ function makeGraphs(error, jsonData) {
         .transitionDuration(0);
 
     yellowCardsND
-        .formatNumber(d3.format("d"))
         .valueAccessor(function (d) {
-            return d.totalYellowCards;
+            return d;
         })
         .group(totalYellowCards)
         .transitionDuration(0);
 
     redCardsND
-        .formatNumber(d3.format("d"))
         .valueAccessor(function (d) {
-            return d.totalRedCards;
+            return d;
         })
         .group(totalRedCards)
         .transitionDuration(0);
