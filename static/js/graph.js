@@ -99,19 +99,10 @@ function makeGraphs(error, jsonData) {
             return {goalsScored: 0, shotsFor: 0};
         }
     );
-    // var totalGoalsFor = ndx.groupAll().reduce(
-    //     function (p, v) {
-    //         p.goalsFor += v['goals_for'];
-    //         return p;
-    //     },
-    //     function (p, v) {
-    //         p.goalsFor -= v['goals_for'];
-    //         return p;
-    //     },
-    //     function () {
-    //         return {goalsFor: 0};
-    //     }
-    // );
+    var totalGoalsFor = ndx.groupAll().reduceSum(function (d){
+        return d['goals_for'];
+    });
+
 
     var totalGoalsAgainst = ndx.groupAll().reduce(
         function (p, v) {
@@ -204,7 +195,6 @@ function makeGraphs(error, jsonData) {
     var totalShotsAgainstGroup = totalShotsAgainstDim.group();
     var homeAwayGroup = homeAwayDim.group();
     var matchweekGroup = matchweekDim.group();
-    var totalGoalsForGroup = totalGoalsForDim.group();
 
 //min and max values to be used in charts
     var minWeek = matchweekDim.bottom(1)[0]['matchweek'] - 1;
@@ -340,11 +330,10 @@ function makeGraphs(error, jsonData) {
 
     totalGoalsForND
         // .formatNumber(d3.format("d"))
-        // .valueAccessor(function (d) {
-        //     return d['goals_for'];
-        // })
-        .valueAccessor(totalGoalsForDim)
-        .group(totalGoalsForGroup)
+        .valueAccessor(function (d) {
+            return d;
+        })
+        .group(totalGoalsFor)
         .transitionDuration(0);
 
     shotsToGoalsScoredND
