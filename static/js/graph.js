@@ -340,9 +340,10 @@ function makeGraphs(error, jsonData) {
 
     totalGoalsForND
         // .formatNumber(d3.format("d"))
-        .valueAccessor(function (d) {
-            return d['goals_for'];
-        })
+        // .valueAccessor(function (d) {
+        //     return d['goals_for'];
+        // })
+        .valueAccessor(totalGoalsForDim)
         .group(totalGoalsForGroup)
         .transitionDuration(0);
 
