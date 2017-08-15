@@ -3,6 +3,7 @@
  */
 
 // team colours and badges for use in graphs and webpage
+// [0] = team's home colour, [1] = team's away colour, [2] = team badge img
 
 const TEAM_COLORS = {
     'Arsenal': ['#e60005','#f1ff3a','arsenal.png'],
@@ -95,19 +96,19 @@ function makeGraphs(error, jsonData) {
             return {goalsScored: 0, shotsFor: 0};
         }
     );
-    var totalGoalsFor = ndx.groupAll().reduce(
-        function (p, v) {
-            p.goalsFor += v['goals_for'];
-            return p;
-        },
-        function (p, v) {
-            p.goalsFor -= v['goals_for'];
-            return p;
-        },
-        function () {
-            return {goalsFor: 0};
-        }
-    );
+    // var totalGoalsFor = ndx.groupAll().reduce(
+    //     function (p, v) {
+    //         p.goalsFor += v['goals_for'];
+    //         return p;
+    //     },
+    //     function (p, v) {
+    //         p.goalsFor -= v['goals_for'];
+    //         return p;
+    //     },
+    //     function () {
+    //         return {goalsFor: 0};
+    //     }
+    // );
     var totalGoalsAgainst = ndx.groupAll().reduce(
         function (p, v) {
             p.goalsAgainst += v['goals_against'];
@@ -335,9 +336,9 @@ function makeGraphs(error, jsonData) {
     totalGoalsForND
         .formatNumber(d3.format("d"))
         .valueAccessor(function (d) {
-            return d.goalsFor;
+            return d['goals_For'];
         })
-        .group(totalGoalsFor)
+        .group(totalGoalsForByDate)
         .transitionDuration(0);
 
     shotsToGoalsScoredND
