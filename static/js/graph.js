@@ -284,6 +284,7 @@ function makeGraphs(error, jsonData) {
             return d;
         })
         .group(totalShotsFor)
+        .formatNumber(d3.format("d"))
         .transitionDuration(0);
 
     totalGoalsForND
@@ -291,6 +292,7 @@ function makeGraphs(error, jsonData) {
             return d;
         })
         .group(totalGoalsFor)
+        .formatNumber(d3.format("d"))
         .transitionDuration(0);
 
     shotsToGoalsScoredND
@@ -310,6 +312,7 @@ function makeGraphs(error, jsonData) {
             return d;
         })
         .group(totalShotsAgainst)
+        .formatNumber(d3.format("d"))
         .transitionDuration(0);
 
     totalGoalsAgainstND
@@ -317,6 +320,7 @@ function makeGraphs(error, jsonData) {
             return d;
         })
         .group(totalGoalsAgainst)
+        .formatNumber(d3.format("d"))
         .transitionDuration(0);
 
     shotsToGoalsConcededND
@@ -336,6 +340,7 @@ function makeGraphs(error, jsonData) {
             return d;
         })
         .group(totalYellowCards)
+        .formatNumber(d3.format("d"))
         .transitionDuration(0);
 
     redCardsND
