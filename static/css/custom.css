@@ -204,3 +204,14 @@ footer {
     }
 }
 
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+/*// css specific properties col-xs-* or none for default*/
+
+    /*to improve user experience on mobile devices*/
+    .chart-wrapper {
+        margin-bottom: 40px;
+    }
+
+}
