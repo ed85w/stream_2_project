@@ -210,7 +210,7 @@ footer {
 /*// css specific properties col-xs-* or none for default*/
 
     /*to improve user experience on mobile devices*/
-    .chart-wrapper {
+    div.chart-wrapper {
         margin-bottom: 40px;
     }
 
